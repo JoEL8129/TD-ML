@@ -1,0 +1,3 @@
+scikit-learn
+umap-learn
+numpy<2.0
