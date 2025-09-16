@@ -1,6 +1,4 @@
-# TD-ML
-
-A TouchDesigner Machine Learning Toolkit. 
+# TDML - TouchDesigner Machine Learning Toolkit
 
 Aimed at easy accessibility and at a quick, but configurable way of applying machine learning directly within TouchDesigner on CHOPs & DATs, without the need to deal too much with data conversions & python. Wraps around scikit-learn, umap-learn and script chops.
 
@@ -13,7 +11,7 @@ As [this](https://derivative.ca/community-post/tutorial/anaconda-miniconda-manag
 
 *First, create a new environment, it's called "td-ml" in this example (use any name you want), but make sure the python version matches that of your touchdesigner version (shown when opening a textport window in touch)*
 
-*As of now (TouchDesigner 2023 / 2025) its 3.11*
+*As of now (TouchDesigner 2023/2025) its 3.11*
 
 `conda create -n td-ml python=3.11 -y`
 
