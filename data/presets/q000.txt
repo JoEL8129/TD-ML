@@ -1,0 +1,3 @@
+name	value	page
+Float	0.4938334058372378	Custom
+Float2	0.9877730080218419	Custom

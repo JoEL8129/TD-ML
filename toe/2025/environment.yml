@@ -1,0 +1,7 @@
+name: tdml-dev
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - -r requirements.txt
+

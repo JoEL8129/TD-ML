@@ -1,0 +1,9 @@
+{
+    "active": true,
+    "mode": "Conda Env",
+    "envName": "tdml-dev",
+    "installPath": "C:\\Users\\js812\\miniconda3",
+    "pythonVersion": "3.11",
+    "pythonVersionNoDot": "311",
+    "autoSetup": false
+}
