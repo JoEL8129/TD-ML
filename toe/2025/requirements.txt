@@ -1,7 +1,0 @@
-numpy<2.0
-scikit-learn==1.7.2
-umap-learn==0.5.8
-scipy==1.15.3
-pandas==2.3.0
-skorch==1.2
-torch==2.8
