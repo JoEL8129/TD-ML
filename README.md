@@ -4,9 +4,9 @@
 A set of [TouchDesigner](https://derivative.ca/) components integrating machine-learning algorithms into TD's node-based CHOP workflows. Based on [scikit-learn](https://scikit-learn.org), [skorch](https://skorch.readthedocs.io/en/stable/), [umap-learn](https://umap-learn.readthedocs.io/en/latest/). Inspired by [FluCoMa](https://www.flucoma.org/) for MaxMSP. 
 
 
-![Project Status](https://img.shields.io/badge/Status-Beta-brightgreen)
+![Project Status](https://img.shields.io/badge/Status-Beta-orange)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-blue)
-![TouchDesigner](https://img.shields.io/badge/TouchDesigner-2023.12370%2B-orange)
+![TouchDesigner](https://img.shields.io/badge/TouchDesigner-2023.12370%2B-green)
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 
 ---
@@ -24,7 +24,7 @@ A set of [TouchDesigner](https://derivative.ca/) components integrating machine-
 
 ![img](./data/img/gesture%20mapping.png)
 ![img](./data/img/gesture%20mapping%202.png)
-*Hand Gesture Mapping to Drive Visual Synth based on Training Examples (Presets) (using hand_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner) by Torin Blankensmith)*
+*Hand Gesture Mapping to Drive Visual Synth based on Training Examples (Presets) (using hand_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner))*
 
 ## Installation
 
@@ -36,11 +36,11 @@ The [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesig
 
 1. Download [miniconda](https://www.anaconda.com/download/success) and install
 2. Open TD and save the project somewhere.
-3. Drop the [environment.yml](environment.yml) next to the project.
+3. Drop the [environment.yml](environment.yml) next to that project.
 4. Back in TD, Drag and Drop [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette to your Project
-5. Select Conda Mode
-6. Set the miniconda install path (point it to the miniconda install folder)
-7. Toggle "Create from environment.yml" par, wait
+5. Select 'Conda Env' in the Par 'Mode'
+6. Set the 'Conda Install Folder' to point to the install folder on your system (by default 'C:/Users/User/miniconda3') 
+7. Toggle "Create from environment.yml" par
 8. When done, The env par should show 'td-ml' 
 9. Set the 'activate' toggle parameter.
 
@@ -96,5 +96,7 @@ which groups similar data points into clusters.
 
 - **Conda-Environment-Loader**: Quickly load a predefined Conda environment from within TouchDesigner. (not needed in TD2025)
 
-- **Filter Samples**: Filters/Smooths across the samples of a CHOP channel using various filters from scipy.signal
 
+## Notes
+
+Have fun with it, any Feedback is highly appreciated
