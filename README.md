@@ -6,7 +6,7 @@ There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datas
 
 
 ![Project Status](https://img.shields.io/badge/Status-Beta-brightgreen)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-blue)
+![Platform](https://img.shields.io/badge/Platform-Windows-green)
 ![TouchDesigner](https://img.shields.io/badge/TouchDesigner-2023.12370%2B-orange)
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 
