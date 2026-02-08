@@ -68,8 +68,6 @@ Once that is done, open TouchDesigner and drop the [conda_env_loader.tox](main/t
 
 ### Neural Network
 
-### Neural Network
-
 - **MLP-Classifier**: A multi-layer perceptron neural network for classification tasks. A feedforward network that learns to map input features to discrete class labels, suitable for pattern recognition and categorical prediction tasks.
 
 - **MLP-Regressor**: A multi-layer perceptron neural network for regression tasks. A feedforward network that learns to map input features to continuous numerical values, suitable for predicting continuous outputs and value estimation.
