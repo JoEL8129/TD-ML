@@ -1,8 +1,0 @@
-active: true
-mode: Conda Env
-envName: td-ml
-installPath: C:\Users\js812\miniconda3
-pythonVersion: 3.11.10
-autoSetup: false
-autoSetupReqs: []
-extraPaths: []
