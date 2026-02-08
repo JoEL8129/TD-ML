@@ -1,8 +1,8 @@
-## TD-ML - TouchDesigner Machine Learning Toolkit 
+# TD-ML - TouchDesigner Machine Learning Toolkit 
 
 
 A set of [TouchDesigner](https://derivative.ca/) components integrating machine-learning algorithms into TD's node-based CHOP workflows. Based on [scikit-learn](https://scikit-learn.org), [PyTorch](https://pytorch.org/), [skorch](https://skorch.readthedocs.io/en/stable/), [umap-learn](https://umap-learn.readthedocs.io/en/latest/) and numerous other [packages](./requirements.txt). Inspired by [FluCoMa](https://www.flucoma.org/) for MaxMSP.
-There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datasets, Trained Models, Bug-Reports or Feedback. 
+There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datasets, Trained Models, Bug-Reports or Feedback. Video Tutorials will come soon, here on [YouTube](https://www.youtube.com/@bi.os_td).
 
 
 ![Project Status](https://img.shields.io/badge/Status-Beta-brightgreen)
