@@ -8,17 +8,26 @@ can be accessed externally, e.g. op('yourComp').PromotedFunction().
 Help: search "Extensions" in wiki
 """
 
-from TDStoreTools import StorageManager
-import TDFunctions as TDF
-import umap
-from umap import UMAP
+
+
+try:
+	import umap
+	from umap import UMAP
+except ImportError as e:
+	raise ImportError(
+		"UMAP could not be imported. This is usually caused by a broken Numba installation.\n"
+		"Fix: In your td-ml conda env, run: pip uninstall numba -y && pip install numba==0.63.1 --no-cache-dir\n"
+		"Ensure TouchDesigner is using the td-ml env (not base). Original error: %s" % e
+	) from e
+
 import pandas as pd
 import ast
 import joblib
 from sklearn.decomposition import PCA
 from sklearn.pipeline import make_pipeline
 from sklearn.pipeline import Pipeline
-
+from TDStoreTools import StorageManager
+import TDFunctions as TDF
 class extumapper:
 	"""
 	umap description
@@ -93,8 +102,8 @@ class extumapper:
 		elif num == 3:
 			header = ['x', 'y', 'z']
 		else:
-			# for n > 3: first 3 are x,y,z, then c4…cN
-			header = ['x', 'y', 'z'] + [f'c{i+1}' for i in range(3, n)]
+			# for num > 3: first 3 are x,y,z, then c4…cN
+			header = ['x', 'y', 'z'] + [f'c{i+1}' for i in range(3, num)]
 		
 		# resolve the DAT operator
 		out = op(dat_op)
@@ -109,7 +118,7 @@ class extumapper:
 		for point in emb:
 			row = list(point)[:num]
 			if len(row) < num:
-				row += [''] * (n - len(row))
+				row += [''] * (num - len(row))
 			out.appendRow(row)
 
 	def Save(self, name='umap_default'):

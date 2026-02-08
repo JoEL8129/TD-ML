@@ -12,8 +12,13 @@ def onPulse(par):
 def onCook(scriptOP):
 	scriptOP.clear()
 	scriptOP.isTimeSlice = False
+	if not hasattr(parent.ps, 'Predict'):
+		scriptOP.numSamples = 1
+		for ch in ('x', 'y'):
+			scriptOP.appendChan(ch)[0] = 0
+		return  # UMAP extension failed to load (e.g. Numba import error)
 	arr = scriptOP.inputs[0].numpyArray()
-    # assume one sample per frame, so pick the first (and only) column:
+	# assume one sample per frame, so pick the first (and only) column:
 	emb_pt = parent.ps.Predict(arr)
 
 
