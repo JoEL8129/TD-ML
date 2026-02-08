@@ -6,6 +6,7 @@ dependencies:
   - python=3.11.10
   - pip
   - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cpu
       - colorama==0.4.6
       - dill==0.4.0
       - filelock==3.20.1

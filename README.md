@@ -42,7 +42,7 @@ The [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesig
 6. Set the miniconda install path (point it to the miniconda install folder)
 7. Toggle "Create from environment.yml" par, wait
 8. When done, The env par should show 'td-ml' 
-9. Set the 'activate' toggle parameter.
+9. Set the 'activate' toggle parameter. (might need a reload or restart of TD)
 
 *This has to be done only once as the 'td-ml' env is now on your system in the miniconda folder, for loading it into other project you can just use the [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) without the install part and just set your miniconda install path and select 'td-ml' from the found env names*  
 
