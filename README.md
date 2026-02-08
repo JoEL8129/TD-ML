@@ -14,17 +14,20 @@ There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datas
 <br>
 
 ![img](./data/img/audio%20classification.png)
-*Audio (Voice) Classification*
+*MLP Classifier: Audio (Voice) Classification*
 <br>
 
 ![img](./data/img/gesture%20classification.png)
-*Facial Expression Classification (using face_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner) by Torin Blankensmith)*
+*MLP Classifier: Facial Expression Classification (using face_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner) by Torin Blankensmith)*
 <br>
 
 
-![img](./data/img/gesture%20mapping.png)
-![img](./data/img/gesture%20mapping%202.png)
-*Hand Gesture Mapping to Drive Visual Synth based on Training Examples (Presets) (using hand_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner) by Torin Blankensmith)*
+![img](./data/img/1.gif)
+*MLP Regressor: Mouse 2D Mapping to 28D Visual Synth Pars*
+
+![img](./data/img/2.gif)
+*MLP Regressor: Mouse 2D Mapping to 120D Wavetable Synth chop-samples)*
+<br>
 
 ## Installation
 
