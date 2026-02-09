@@ -29,6 +29,12 @@ There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datas
 *MLP Regressor: Slider2D Mapping to 120D Wavetable Synth chop-samples)*
 <br>
 
+## Description 
+
+Started as learning/university project and it still is, but I'm trying to make it as generally usable as possible, but stuff might not be perfectly solved or 100% working yet and up for future changes, so better consider it Beta / Experimental. 
+
+The idea is to train small neural networks from scratch on any CHOP data with a few Components and without touching any python. Includes Classification & Regression Neural Networks (MLP & LSTM so far), some Dimension Reduction Tools like UMAP or tSNE and other things like a 'Datasetter' Tool for quickly creating/recording CHOP data into needed table formats / custom Datasets. Useful for any Classification or Regression Tasks on any CHOP data (tracking, sensors, audio, control parameters, etc.). Let me know (@discord or here) if you encounter issues. Hope you have fun with it ;)
+
 ## Installation
 
 You need to load a virtual python environment into TD based on provided [requirements.txt](./requirements.txt) or [environment.yml](./environment.yml):
