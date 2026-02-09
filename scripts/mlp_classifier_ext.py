@@ -82,9 +82,6 @@ class extmlpclassifier():
 			case "Reload":
 				self.LoadFromMenu()
 
-			case "Retrain" | "Retrain2":
-				print('retrain')
-
 			case "Savecopyfilepulse":
 				self.Save(self.ownerComp.par.Savecopyfile.eval())
 
@@ -483,6 +480,8 @@ class extmlpclassifier():
 	def Predict(self, arr = None):
 		if self.Pipeline is None or self.Nfeat is None:
 			print("No model found. Click TRAIN to create one.")
+			return
+		if arr is None:
 			return
 		method = self.ownerComp.par.Predictmethod.eval()
 

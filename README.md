@@ -67,7 +67,7 @@ As this [tutorial](https://derivative.ca/community-post/tutorial/anaconda-minico
 
 `pip install -r requirements.txt`
 
-Once that is done, open TouchDesigner and drop the [conda_env_loader.tox](main/tools/other/conda_env_loader.tox) and set miniconda installation folder path and env name and hit 'load'. (TD Restart might be needed)
+Once that is done, open TouchDesigner and drop the [conda_env_loader.tox](tox/_helper/conda_env_loader.tox) and set miniconda installation folder path and env name and hit 'load'. (TD Restart might be needed)
 
 
 
@@ -126,3 +126,8 @@ which groups similar data points into clusters. *(Work in progress)*
 - **[td_mfcc](https://github.com/hrtlacek/td_mfcc )** by hrtlacek / Patrik Lechner
 
 
+## Future
+
+**Features:**
+- Multi-Label Classification
+- transformers for sequential motion data ? 

@@ -16,7 +16,7 @@ This project uses the following open-source libraries and their respective licen
   License: BSD 3-Clause License  
   Source: https://scipy.org/
 
-- **numpy** (numpy==1.26.4)  
+- **numpy** (numpy==2.1.2)  
   License: BSD 3-Clause License  
   Source: https://numpy.org/
 
