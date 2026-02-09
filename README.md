@@ -21,7 +21,7 @@ There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datas
 <br>
 
 ![img](./data/img/audio%20classification.png)
-*MLP Classifier: Audio (Voice) Classification & UMAP Visualization, **[td_mfcc](https://github.com/hrtlacek/td_mfcc )** by hrtlacek / Patrik Lechner*
+*MLP Classifier: Audio (Voice) Classification & UMAP Visualization*
 <br>
 
 ![img](./data/img/gesture%20classification.png)
