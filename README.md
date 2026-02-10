@@ -128,6 +128,8 @@ which groups similar data points into clusters. *(Work in progress)*
 
 ## Future
 
+- Test on OSX/MAC (should work, but not tested yet)
+
 **Features:**
 - Multi-Label Classification
-- transformers for sequential motion data ? 
+- transformers/attention mechanism for sequential motion data ? 
