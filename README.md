@@ -16,6 +16,9 @@ There is a [Discord](https://discord.gg/KzpH76P68X) for Questions, Sharing Datas
 ![img](./data/img/1.gif)
 *MLP Regressor: Slider2D Mapping to 28D Visual Synth Pars*
 
+![img](./data/img/3.gif)
+*MLP Regressor: Leap Motion (1 Hand - 46 Channels) 46D Mapping to 28D Visual Synth Pars*
+
 ![img](./data/img/2.gif)
 *MLP Regressor: Slider2D Mapping to 120D Wavetable Synth chop-samples)*
 <br>
