@@ -42,6 +42,20 @@ You need to load a virtual python environment into TD based on provided [require
 
 The [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette does that. 
 
+#### Option I: venv 
+
+1. Drag and Drop [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette to your Project
+2. Choose "venv" mode
+3. Set the path to be the folder where you want to install the virtual environment to
+4. Copy the "requirements.txt" file to that folder
+4. Set the name it should have (eg. "td-ml")
+5. Pulse "create venv from requirements.txt"
+6. Wait and Activate
+
+*In another project if you want to load that venv, you just have to set the path in the TDPyEnvManager correctly to where you installed it to the first time and set name accordingly and hit activate again*
+
+#### Option II: Conda 
+
 1. Download [miniconda](https://www.anaconda.com/download/success) and install
 2. Open TD and save the project somewhere.
 3. Drop the [environment.yml](environment.yml) next to the project.
