@@ -36,7 +36,7 @@ The idea is to train small neural networks from scratch on any CHOP data with a 
 
 ## Installation
 
-You need to load a virtual python environment into TD based on provided [requirements.txt](./requirements.txt) or [environment.yml](./environment.yml):
+You need to load a virtual python environment into TD based on provided [requirements.txt](./requirements.txt) or [environment.yml](./environment.yml). Due to Torch (3gb) downloading can take a while (3.6gb in total):
 
 ### TouchDesigner 2025
 
