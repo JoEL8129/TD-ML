@@ -41,9 +41,8 @@ The [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesig
 1. Drag and Drop [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette to your Project
 2. Choose "venv" mode
 3. Set the path to be the folder where you want to install the virtual environment to
-4. Copy the "requirements.txt" file to that folder
 4. Set the name it should have (eg. "td-ml")
-5. Pulse "create venv from requirements.txt"
+5. Pulse "create venv from requirements.txt" (make sure you copied requirements.txt from the repo to your project folder)
 6. Wait and Activate
 
 *In another project if you want to load that venv, you just have to set the path in the TDPyEnvManager correctly to where you installed it to the first time and set name accordingly and hit activate again*
