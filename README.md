@@ -133,14 +133,6 @@ which groups similar data points into clusters. *(Work in progress)*
 - **[td_mfcc](https://github.com/hrtlacek/td_mfcc )** by hrtlacek / Patrik Lechner
 
 
-## Future
-**General:**
-- Test on OSX/MAC (should work, but not tested yet)
-
-**Features:**
-- Multi-Label Classification
-- transformers/attention mechanism for sequential motion/CHOP data ? 
-
 ## More Usage Examples
 
 ![img](./data/img/3.gif)
