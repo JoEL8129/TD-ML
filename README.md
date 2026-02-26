@@ -145,7 +145,7 @@ which groups similar data points into clusters. *(Work in progress)*
 
 ### Audio (not included)
 
-- **[td_mfcc](https://github.com/hrtlacek/td_mfcc )** by hrtlacek / Patrik Lechner
+- **[td_mfcc](https://github.com/hrtlacek/td_mfcc )** by hrtlacek / [Patrik Lechner](https://www.patriklechner.com/)
 
 
 ## More Usage Examples
@@ -158,7 +158,7 @@ which groups similar data points into clusters. *(Work in progress)*
 <br>
 
 ![img](./data/img/gesture%20classification.png)
-*MLP Classifier: Facial Expression Classification (using face_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner) by Torin Blankensmith)*
+*MLP Classifier: Facial Expression Classification (using face_tracking from [mediapipe](https://github.com/torinmb/mediapipe-touchdesigner) by [Torin Blankensmith](https://www.torinblankensmith.com/))*
 <br>
 
 
@@ -183,7 +183,7 @@ which groups similar data points into clusters. *(Work in progress)*
 - **Offline / out-of-TD training:** VAEs typically benefit from larger datasets and longer training. An offline or external training path (outside real-time TD) would make this more practical.
 - **Usage and example ideas:**
   - **Latent mappings:** As in the [NIME paper](https://nime.pubpub.org/pub/latent-mappings/release/1) by [Tim Murray-Browne](https://nime.pubpub.org/user/tim-murray-browne) and [Panagiotis Tigas](https://nime.pubpub.org/user/panagiotis-tigas): train a VAE on input streams (e.g. Kinect) and use the latent representation directly to drive synthesis or parameters—avoiding fixed one-to-one mappings. Unlike supervised regressors, you don’t have to define input→output in advance, so the workflow is more explorative. Trade-off: more data is usually needed (e.g. 16 hours in the paper). 
-  - **Classical VAE use:** Between encoder and decoder, latent variables can be edited via CHOPs (e.g. Math CHOP) to alter or synthesize motion/CHOP data (similar to [RAVE](https://github.com/acids-ircam/RAVE) for audio synthesis). Combining this with an MLP regressor lets you map a defined control space (e.g. XY-pad) onto the latent space for more intentional control; see the [ICCC 2023 paper](https://computationalcreativity.net/iccc23/papers/ICCC-2023_paper_100.pdf) by [R. Fiebrink](https://scholar.google.com/citations?user=fEMWXvkAAAAJ&hl=de) et al.
+  - **Classical VAE use:** Between encoder and decoder, latent variables can be edited via CHOPs (e.g. Math CHOP) to alter or synthesize motion/CHOP data (similar to [RAVE](https://github.com/acids-ircam/RAVE) for audio synthesis). Combining this with an MLP regressor lets you map a defined control space (e.g. XY-pad) onto the latent space for more intentional control; see the [ICCC 2023 paper](https://computationalcreativity.net/iccc23/papers/ICCC-2023_paper_100.pdf) by [Gabriel Vigliensoni](https://vigliensoni.com/categories/featured/) & [Rebecca Fiebrink](https://scholar.google.com/citations?user=fEMWXvkAAAAJ&hl=de).
 
 ## Acknowledgments
 
