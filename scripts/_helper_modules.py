@@ -4,12 +4,11 @@ from pathlib import Path
 
 import numpy as np
 
+# Shared helpers for TD ML: table/CHOP conversion, paths, custom pages and parameters.
 
 
 def _table_to_numpy(table):
-    """
-    Convert a DAT table to a 2D float numpy array, optionally skipping the first row and/or column.
-    """
+    """DAT table -> 2D float ndarray. Uses full table (r0=0, c0=0); raises if empty or non-numeric cell."""
     r0 = 0
     c0 = 0
     if table is None or table.numRows - r0 <= 0 or table.numCols - c0 <= 0:
@@ -32,7 +31,7 @@ def _table_to_numpy(table):
 
 
 def _weights_from_table(table):
-    """Extract 1D float sample weights from a DAT table. Same convention as labels/weights in classifier."""
+    """1D float weights from first column of DAT table. Same convention as classifier/regressor weights."""
     r0 = 0
     c = 0
     if table is None or table.numCols <= c:
@@ -51,6 +50,7 @@ def _weights_from_table(table):
 
 
 def _sk_param_table_to_dict(paramDAT):
+    """Parse param DAT: col0=key, col1=raw value; literal_eval where possible, else string."""
     params = {}
     for row in paramDAT.rows()[0:]:
         key = row[0].val
@@ -64,94 +64,55 @@ def _sk_param_table_to_dict(paramDAT):
 
 
 def _folder_or_project(s: str, replacement: str = "project.folder") -> str:
-    """
-    If `s` contains a path separator, return everything up to and including
-    the last '/' (i.e., the containing folder, with trailing slash).
-    If `s` has no '/', return `replacement` (default: 'project.folder').
-
-    Also treats backslashes as separators (normalizes to '/').
-    """
+    """Path up to and including last '/' (trailing slash), or replacement if no separator. Backslashes normalized to '/'."""
     if s is None:
         return replacement
-
     s = str(s).strip()
     if not s:
         return replacement
-
-    # Normalize Windows-style separators to forward slashes
     s = s.replace("\\", "/")
-
-    # If there's at least one slash, keep up to and including the last slash
     if "/" in s:
         head, sep, _ = s.rpartition("/")
-        return head + sep  # keeps the trailing slash
-
-    # No slash -> replace with project folder token
+        return head + sep
     return replacement
 
 def has_suffix(s: str, ref: str) -> bool:
-    """
-    True iff `s` ends with `ref` and the character immediately before that
-    match is a '.' (i.e., a real file suffix like '.ref'). No case folding.
-    """
+    """True iff s ends with ref and the character before the match is '.' (real file extension). Case-sensitive."""
     if not s or not ref:
         return False
     if not s.endswith(ref):
         return False
     i = len(s) - len(ref)
-    if i == 0:  # ref would start at position 0 -> no dot before it
+    if i == 0:
         return False
     return s[i - 1] == '.'
 
 
-def _append_chop_to_table(chopCOMP, tableDAT, include_header=False):
-    """
-    Append the samples of every channel in a CHOP to a Table DAT.
-    - One row per channel: [chanName, s0, s1, s2, ...]
-    - Uses Channel.numpyArray() for speed and simplicity.
-
-    Args:
-        chopCOMP (CHOP): The CHOP whose channels/samples you want to append.
-        tableDAT (DAT):  The Table DAT to append rows to.
-        include_header (bool): If True, append a header row first:
-                               ['chan', 's0', 's1', ... 'sN'].
-
-    Example:
-        append_chop_to_table(op('noise1'), op('table1'), include_header=True)
-    """
-    if chopCOMP is None or tableDAT is None:
+def _append_chop_to_table(chopOp, tableDAT, include_header=False):
+    """Append CHOP to table: one row per channel [chanName, s0, s1, ...]. include_header=True adds row ['chan','s0',...]. Uses Channel.numpyArray()."""
+    if chopOp is None or tableDAT is None:
         return
-
-    # optional header showing sample indices
     if include_header:
-        header = ['chan'] + [f's{i}' for i in range(chopCOMP.numSamples)]
+        header = ['chan'] + [f's{i}' for i in range(chopOp.numSamples)]
         tableDAT.appendRow(header)
-
-    # append one row per channel
-    for i in range(chopCOMP.numChans):
-        # Channel.numpyArray() -> 1D numpy array of samples
-        samples = chopCOMP[i].numpyArray()
+    for i in range(chopOp.numChans):
+        samples = chopOp[i].numpyArray()
         if include_header:
-            row = [chopCOMP[i].name] + samples.tolist()
+            row = [chopOp[i].name] + samples.tolist()
         else: 
             row = samples.tolist()
         tableDAT.appendRow(row)
 
 def next_incremented_path(path: Path, width=3, force_suffix=".joblib") -> Path:
-    """
-    Given a desired path (with or without .joblib), return the next available path by
-    incrementing a trailing _NNN if present, otherwise starting at _001.
-    Works within the path's parent directory.
-    """
+    """Next available path by incrementing trailing _NNN (or _001). force_suffix applied; search in path's parent."""
     path = Path(path)
     if force_suffix and path.suffix.lower() != force_suffix:
         path = path.with_suffix(force_suffix)
 
     stem = path.stem
-    m = re.match(r"^(.*?)(?:_(\d+))?$", stem)
+    m = re.match(r"^(.*?)(?:_(\d+))?$", stem)  # optional trailing _NNN
     base = m.group(1)
     n = int(m.group(2)) + 1 if m.group(2) else 1
-
     candidate = path.with_name(f"{base}_{n:0{width}d}{path.suffix}")
     while candidate.exists():
         n += 1
@@ -161,7 +122,8 @@ def next_incremented_path(path: Path, width=3, force_suffix=".joblib") -> Path:
 
 
 
-def CopyOpsFromContainer(contentOp,targetOp):
+def CopyOpsFromContainer(contentOp, targetOp):
+    """Copy all children of contentOp into targetOp; position with nodeX/nodeY."""
     containers = contentOp.ops('*')
     for i, cont in enumerate(containers):
         newOp = targetOp.copy(cont)
@@ -169,7 +131,7 @@ def CopyOpsFromContainer(contentOp,targetOp):
         newOp.nodeY = -400
 
 def _labels_from_table(table, first_row_header=False, first_col_header=False):
-    """Extract 1D labels from a DAT table. Labels live in the first data column."""
+    """1D label array from DAT table; first data column (after optional header row/col)."""
     r0 = 1 if first_row_header else 0
     c = 1 if first_col_header else 0
     if table.numCols <= c:
@@ -179,62 +141,56 @@ def _labels_from_table(table, first_row_header=False, first_col_header=False):
     return np.array([str(table[r, c].val) for r in range(r0, table.numRows)], dtype=object)
 
 
+def _labels_or_multilabel_from_table(table, first_row_header=False, first_col_header=False):
+    """Labels from DAT: one data column => 1D label array; multiple columns => list of lists (one list of label strings per row, empty cells skipped, for MultiLabelBinarizer)."""
+    r0 = 1 if first_row_header else 0
+    c0 = 1 if first_col_header else 0
+    if table is None or table.numRows <= r0 or table.numCols <= c0:
+        raise ValueError(
+            f"Table has no data (rows={getattr(table, 'numRows', 0)}, cols={getattr(table, 'numCols', 0)}, "
+            f"first_row={r0}, first_col={c0})."
+        )
+    n_cols = table.numCols - c0
+    if n_cols == 1:
+        return np.array(
+            [str(table[r, c0].val) for r in range(r0, table.numRows)],
+            dtype=object,
+        )
+    out = []
+    for r in range(r0, table.numRows):
+        row_labels = []
+        for c in range(c0, table.numCols):
+            val = table[r, c].val
+            s = str(val).strip() if val is not None else ""
+            if s:
+                row_labels.append(s)
+        out.append(row_labels)
+    return out
+
+
 def resolve_relative_op_paths_in_menu_source(par, base_op):
-    """
-    Convert relative op() paths in a parameter's menuSource to absolute paths.
-    
-    If the menuSource contains a tdu.TableMenu() with a relative op() path,
-    this function resolves it relative to base_op and returns the updated menuSource
-    with an absolute path.
-    
-    Args:
-        par: The parameter whose menuSource should be adjusted.
-        base_op: The operator to use as the base for resolving relative paths.
-    
-    Returns:
-        str: The adjusted menuSource string, or the original if no adjustment was needed.
-    
-    Example:
-        # If par.menuSource is "tdu.TableMenu(op('./dat1'))"
-        # and base_op is op('container1')
-        # Returns: "tdu.TableMenu(op('/project1/container1/dat1'))"
-    """
+    """Rewrite par.menuSource: replace relative op('...') inside tdu.TableMenu with absolute path from base_op. Returns adjusted string or original."""
     if par is None or base_op is None:
         return getattr(par, 'menuSource', None) if par else None
-    
     menu_source = par.menuSource
     if isinstance(menu_source, str) and menu_source.startswith('tdu.TableMenu('):
-        # Try to extract the inner op() path and rewrite as absolute
         match = re.search(r"op\(['\"](.+?)['\"]\)", menu_source)
         if match:
             rel_path = match.group(1)
             dat_op = base_op.op(rel_path)
             if dat_op:
                 abs_path = dat_op.path
-                # Replace the op('./...') call with the absolute path
                 new_menu_source = re.sub(
                     r"op\(['\"].+?['\"]\)",
                     "op('{}')".format(abs_path),
                     menu_source
                 )
                 return new_menu_source
-    return menu_source  # fallback, return as-is
+    return menu_source
 
 
 def get_or_create_custom_page(target_op, page_name):
-    """
-    Get an existing custom page by name, or create it if it doesn't exist.
-    
-    Args:
-        target_op: The operator to get/create the custom page on.
-        page_name: The name of the custom page.
-    
-    Returns:
-        The custom page object.
-    
-    Example:
-        page = get_or_create_custom_page(op('container1'), 'Presets')
-    """
+    """Custom page by name on target_op; create if missing."""
     if target_op is None:
         raise ValueError("target_op cannot be None")
     
@@ -247,39 +203,13 @@ def get_or_create_custom_page(target_op, page_name):
 
 
 def copy_custom_parameters(source_op, target_page, base_op=None, skip_existing=True, exclude_names=None):
-    """
-    Copy custom parameters from a source operator to a target custom page.
-    
-    This function maps parameter types to their corresponding append methods
-    and copies all custom parameters from source_op to target_page, preserving
-    labels, defaults, and menu sources (with optional path adjustment).
-    
-    Args:
-        source_op: The operator whose custom parameters should be copied.
-        target_page: The custom page to add the parameters to.
-        base_op: Optional operator to use for adjusting menu source paths.
-                 If provided, relative op() paths in Menu parameters will be
-                 converted to absolute paths.
-        skip_existing: If True, skip parameters that already exist on the target page.
-        exclude_names: Optional list/set of parameter names to exclude from copying.
-    
-    Returns:
-        list: A list of the newly created parameter objects.
-    
-    Example:
-        page = get_or_create_custom_page(op('container1'), 'Presets')
-        new_pars = copy_custom_parameters(op('source1'), page, base_op=op('container1'))
-        # Exclude specific parameters:
-        new_pars = copy_custom_parameters(op('source1'), page, exclude_names=['Targetop', 'Otherpar'])
-    """
+    """Copy source_op custom pars to target_page (type -> append method). base_op optional to resolve Menu/StrMenu op() paths. skip_existing, exclude_names. Returns list of created pars."""
     if source_op is None or target_page is None:
         return []
-    
     if exclude_names is None:
         exclude_names = set()
     elif not isinstance(exclude_names, set):
         exclude_names = set(exclude_names)
-    
     type_map = {
         'Float': target_page.appendFloat,
         'Int': target_page.appendInt,
@@ -291,60 +221,36 @@ def copy_custom_parameters(source_op, target_page, base_op=None, skip_existing=T
         'RGB': target_page.appendRGB,
         'RGBA': target_page.appendRGBA,
         'Folder': target_page.appendFolder,
-        # Add more as needed
     }
-    
     created_pars = []
     par_list = source_op.customPars
-    
     for par in par_list:
         name = par.name
-        
-        # Skip excluded parameters
         if name in exclude_names:
             continue
-        
         label = par.label
         par_type = par.style
         append_func = type_map.get(par_type, None)
-        
         if append_func:
-            # Check if parameter already exists
             if skip_existing and any(p.name == name for p in target_page.pars):
                 continue
-            
             new_par = append_func(name, label=label)
             created_pars.append(new_par)
-            
-            # Handle Menu and StrMenu parameters with menuSource
             if par_type in ('Menu', 'StrMenu'):
                 menu_source_path = resolve_relative_op_paths_in_menu_source(par, base_op) if base_op else par.menuSource
                 try:
                     new_par.menuSource = menu_source_path
                 except Exception:
                     pass
-            
-            # Copy default value
             try:
                 new_par.default = par.default
             except Exception:
                 pass
-    
     return created_pars
 
 
 def bind_parameters_to_target(source_pars, target_op_path):
-    """
-    Set bindExpr on source parameters to bind them to corresponding parameters
-    on a target operator.
-    
-    Args:
-        source_pars: Iterable of parameters to bind (e.g., op('source1').customPars).
-        target_op_path: The path of the target operator (e.g., op('target1').path).
-    
-    Example:
-        bind_parameters_to_target(op('source1').customPars, op('target1').path)
-    """
+    """Set bindExpr on each par to op(target_op_path).par.{par.name}."""
     if source_pars is None or target_op_path is None:
         return
     

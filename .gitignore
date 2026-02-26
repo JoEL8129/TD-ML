@@ -1,7 +1,4 @@
 TDPyEnvManagerContext.yaml
-# Exclude numbered TD-ML versions (e.g., TD-ML.2.toe, TD-ML.6.toe) but keep TD-ML.toe
 TD-ML.*.toe
-
-# Backup folder
 Backup/
 
