@@ -57,21 +57,6 @@ The [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesig
 *In another project if you want to load that venv, you just have to set the path in the TDPyEnvManager correctly to where you installed it to the first time and set name accordingly*
 
 
-#### Option II: conda 
-
-1. `conda create -n td-ml python=3.11.10 -y`
-2. `conda activate td-ml`
-3. `cd C:\Users\Username\Documents\GitHub\TD-ML` 
-*(cd to downloaded TD-ML folder on your system, as requirements.txt lives there)*
-4. `pip install -r requirements.txt`
-5. Drag and Drop [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette to your Project
-6. Choose "conda" mode
-7. Set the path to be the folder where you want to installed conda to 
-8. Select and Load 'td-ml'
-
-*In another project if you want to load that conda venv, you just have to set the path in the TDPyEnvManager correctly to where you installed conda to and set name accordingly*
-
-
 ### CUDA Support for LSTMs & VAE
 Note that, LSTMs and VAE components have the option to chose "Device", which can be set to CUDA. This requires an additional step for installation as the requirements.txt as is, only includes Torch's CPU Wheel to avoid unnecessary download sizes for Users not making use of this. 
 
@@ -81,7 +66,7 @@ Note that, LSTMs and VAE components have the option to chose "Device", which can
 
  ``--extra-index-url https://download.pytorch.org/whl/cu128``
 
-3. Then follow your prefered Env Installation Method, as described above. 
+3. Then follow Env Installation Method, as described above. 
 
 <br>
 
