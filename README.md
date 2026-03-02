@@ -37,7 +37,7 @@ Furthermore, I'd be happy if anyone is interested in contributing in any capacit
 
 ## Installation
 
-You need to load a virtual python environment into TD based on provided [requirements.txt](./requirements.txt) or [environment.yml](./environment.yml).
+You need to load a virtual python environment into TD based on provided [requirements.txt](./requirements.txt).
 
 
 
@@ -45,7 +45,7 @@ You need to load a virtual python environment into TD based on provided [require
 
 The [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette loads a Python Environment into TD.
 
-#### Option I: venv 
+#### venv 
 
 1. Drag and Drop [TDPyEnvManager](https://derivative.ca/community-post/introducing-touchdesigner-python-environment-manager-tdpyenvmanager/72024) from Palette to your Project
 2. Choose "venv" mode
