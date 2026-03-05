@@ -1,7 +1,9 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 dill==0.4.0
 numpy==2.1.2
+optree==0.19.0
 scikit-learn==1.8.0
 skorch==1.2.0
 torch==2.10.0
 umap-learn==0.5.8
+
