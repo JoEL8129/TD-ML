@@ -7,7 +7,7 @@ Join the [Discord](https://discord.gg/KzpH76P68X) for questions, sharing dataset
 
 ![Version](https://img.shields.io/badge/Version-0.2-blue)
 ![Project Status](https://img.shields.io/badge/Status-Beta-orange)
-![Platform](https://img.shields.io/badge/Platform-Windows_%7C_macOS-green)
+![Platform](https://img.shields.io/badge/Platform-Windows-green)
 ![TouchDesigner](https://img.shields.io/badge/TouchDesigner-2025.32280%2B-violet)
 ![Python](https://img.shields.io/badge/Python-3.11.10-blue)
 
